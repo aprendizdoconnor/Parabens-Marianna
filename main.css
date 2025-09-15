@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Bangers', cursive;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(180deg, #0D47A1 0%, #E50914 100%);
+  position: relative;
+}
+
+/* Teias espalhadas por todo o site */
+body::before, body::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: 
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 2px, transparent 2px, transparent 20px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 2px, transparent 2px, transparent 20px);
+  top: -50%;
+  left: -50%;
+  z-index: -2;
+  animation: webMove 20s linear infinite;
+}
+
+@keyframes webMove {
+  0% { transform: translate(0,0) rotate(0deg); }
+  100% { transform: translate(-50px,50px) rotate(360deg); }
+}
+
+/* Fundo com prédios via CSS */
+.background { position: fixed; top:0; left:0; width:100%; height:100%; z-index:-3; display:flex; justify-content:center; align-items:flex-end; }
+.buildings { display:flex; align-items:flex-end; gap:8px; }
+.building { width:40px; background: linear-gradient(to top, #111 0%, #555 100%); border-radius:3px 3px 0 0; border:2px solid #222; box-shadow:0 0 15px rgba(0,0,0,0.6); position: relative;}
+.building::after { content:''; position:absolute; top:10%; left:10%; width:80%; height:80%; background: repeating-linear-gradient(to bottom, #FFD700 0px, #FFD700 2px, transparent 2px, transparent 6px); opacity:0.2; border-radius:2px; }
+
+/* Spider-Man animado */
+.spiderman { width:100px; height:120px; position:absolute; top:-150px; left:50%; transform:translateX(-50%); animation: dropSwing 4s ease-in-out infinite; z-index:10; }
+.spiderman-body { width:100px; height:100px; background: radial-gradient(circle at 30% 30%, #E50914, #8B0000); border-radius:50%; position:relative; box-shadow:0 0 20px #ff1744 inset; }
+.spiderman-eyes { width:50px; height:20px; background:white; border-radius:25px; position:absolute; top:25px; left:25px; box-shadow:0 0 8px #fff; animation: eyeGlow 2s ease-in-out infinite alternate; }
+
+@keyframes eyeGlow { 0% { box-shadow:0 0 5px #fff; } 100% { box-shadow:0 0 15px #fff; } }
+@keyframes dropSwing { 0% {top:-150px; transform:translateX(-50%) rotate(-15deg);} 50% {top:150px; transform:translateX(-50%) rotate(15deg);} 100% {top:-150px; transform:translateX(-50%) rotate(-15deg);} }
+
+/* Título neon */
+.title { font-size:3rem; text-shadow:0 0 5px #fff,0 0 10px #ff1744,0 0 15px #ff1744,0 0 20px #ff1744; margin:20px; animation: dropTitle 1.5s ease-out, glow 2s ease-in-out infinite alternate; }
+@keyframes dropTitle { 0%{transform:translateY(-200%);opacity:0;} 100%{transform:translateY(0);opacity:1;} }
+@keyframes glow { 0%{text-shadow:0 0 5px #fff,0 0 10px #ff1744,0 0 15px #ff1744,0 0 20px #ff1744;} 100%{text-shadow:0 0 10px #fff,0 0 20px #ff1744,0 0 30px #ff1744,0 0 40px #ff1744;} }
+
+/* Caixa mensagem */
+.message-box { background:rgba(255,255,255,0.1); border-radius:25px; padding:30px; max-width:600px; margin-bottom:20px; backdrop-filter:blur(12px); box-shadow:0 8px 30px rgba(0,0,0,0.6); text-shadow:1px 1px 2px #000; font-size:1.3rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.message-box:hover { transform:translateY(-5px); box-shadow:0 12px 40px rgba(0,0,0,0.8); }
+
+/* Botão moderno */
+#webButton { background:linear-gradient(45deg, #E50914,#FF1744); border:none; border-radius:30px; padding:18px 50px; font-size:1.3rem; cursor:pointer; color:white; box-shadow:0 8px 25px rgba(0,0,0,0.6); transition: all 0.3s ease; position:relative; overflow:hidden; }
+#webButton::after { content:''; position:absolute; width:100%; height:100%; top:0; left:-100%; background:rgba(255,255,255,0.2); transform:skewX(-20deg); transition:0.5s; }
+#webButton:hover::after { left:200%; }
+#webButton:hover { transform:scale(1.1); box-shadow:0 12px 35px rgba(0,0,0,0.8); }
+
+/* Canvas confete */
+#confettiCanvas { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:5; }
+
+/* Responsivo */
+@media (max-width:600px){.title{font-size:2rem;}.message-box{font-size:1rem;padding:20px;}#webButton{font-size:1rem;padding:12px 30px;}.buildings{gap:4px;}.building{width:25px;}}
